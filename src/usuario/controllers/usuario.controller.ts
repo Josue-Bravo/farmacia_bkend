@@ -2,6 +2,7 @@ import { Body, Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post,
 import { UsuarioService } from "../services/usuario.service";
 import { Usuario } from "../entities/usuario.entity";
 import { JwtAuthGuard } from "../../auth/guard/jwt-auth.guard";
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 
 @Controller("/usuarios")
@@ -9,6 +10,7 @@ export class UsuarioController{
 
     constructor(private readonly usuarioService: UsuarioService){ }
 
+    @ApiBearerAuth()
     @UseGuards(JwtAuthGuard)
     @Get('/all')
     @HttpCode(HttpStatus.OK)
@@ -16,6 +18,7 @@ export class UsuarioController{
         return this.usuarioService.findAll();
     }
 
+    @ApiBearerAuth()
     @UseGuards(JwtAuthGuard)    
     @Get('/:id')
     @HttpCode(HttpStatus.OK)
@@ -29,6 +32,7 @@ export class UsuarioController{
         return this.usuarioService.create(usuario)
     }
 
+    @ApiBearerAuth()
     @UseGuards(JwtAuthGuard)
     @Put('/atualizar')
     @HttpCode(HttpStatus.OK)
