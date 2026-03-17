@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CategoriaModule } from './categoria/categoria.module';
 import { ProdutoModule } from './produto/produto.module';
+import { AuthModule } from './auth/auth.module';
+import { UsuarioModule } from './usuario/usuario.module';
 
 
 @Module({
@@ -18,7 +20,9 @@ import { ProdutoModule } from './produto/produto.module';
       dropSchema: false, // Cuidado: isso irá apagar o banco de dados a cada reinício da aplicação. Use apenas em desenvolvimento.
     }),
     CategoriaModule,
-    ProdutoModule
+    ProdutoModule,
+    AuthModule,
+    UsuarioModule
   ],
   controllers: [],
   providers: [],
